@@ -1,0 +1,151 @@
+Project Description
+
+This application allows users to register and log in using their email and password. Once authenticated, users can view a list of products from the Fake Store API, view detailed information about each product, and add items to their personal cart. Cart data is stored per user in Firebase Realtime Database and is also saved locally using AsyncStorage for offline access. The app uses React Navigation for screen transitions and maintains the login state across restarts.
+
+How to Set Up and Run the Project
+
+Open the project folder using a code editor such as Visual Studio Code.
+
+Install dependencies (if not already installed):
+Run the following command in the terminal:
+npm install
+
+Start the project using Expo:
+Run the following command:
+npx expo start
+
+The Expo Developer Tools will open in your browser. You can:
+
+Scan the QR code with your mobile device using the Expo Go app.
+
+Or use an emulator (Android or iOS) if it's set up.
+
+Firebase Configuration
+
+Firebase has already been set up.
+
+The configuration file is located in:
+firebase.js
+
+Firebase features enabled in this project:
+
+Authentication using Email/Password
+
+Realtime Database for saving user cart data
+
+No changes are required unless testing with a different Firebase project. In that case, replace the values in firebase.js with your own Firebase config.
+
+Firebase Security Rules
+
+To protect user data and ensure each user can only access their own cart, the following Firebase Realtime Database security rules should be used:
+
+{
+  "rules": {
+    "carts": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    }
+  }
+}
+
+Main Features Implemented
+
+User Authentication
+
+Register and login using Firebase Email/Password Auth
+
+Form validation and error messages
+
+Persistent login across restarts
+
+Logout functionality
+
+Product Listing
+
+Fetch products from https://fakestoreapi.com/products
+
+Display products using FlatList
+
+Filter products by category
+
+Product Detail
+
+Show product image, title, description, and price
+
+Add product to cart
+
+Shopping Cart
+
+Display list of items added by user
+
+Update quantity or remove items
+
+Calculate total price
+
+Save and sync cart data with Firebase in real time
+
+Store a copy of the cart in local storage using AsyncStorage
+
+Offline Cart Access
+
+Load cart from local storage if no internet is available
+
+Navigation
+
+React Navigation is used to move between screens:
+
+Login
+
+Registration
+
+Product List
+
+Product Detail
+
+Cart
+
+User Interface
+
+Responsive design for different screen sizes
+
+Clean layout using Flexbox and StyleSheet
+
+Consistent styling and readable fonts
+
+Visual feedback on button presses
+
+Screenshots Required
+
+Please refer to the attached screenshots in this submission (or embedded below) for:
+
+Login/Registration Screen
+
+Product List Screen
+
+Product Detail Screen
+
+Cart Screen
+
+Submission Structure
+
+The zipped submission contains:
+
+All source code files
+
+firebase.js file with Firebase setup
+
+This README file (Word format)
+
+Screenshots of all key app screens
+
+Important Notes
+
+The project uses the Expo SDK for easier mobile development and testing.
+
+Internet is required for fetching products unless caching is applied.
+
+Offline cart is available using AsyncStorage.
+
+Each user's cart is private and separated using their Firebase UID.
